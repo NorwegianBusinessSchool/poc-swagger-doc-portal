@@ -8,48 +8,24 @@ class App extends Component {
     super(props);
     this.state = {
         organizationConfig: null,
-        definitionList: null,
+        swaggerUrlList: null,
         definitionLink: "https://petstore.swagger.io/v2/swagger.json"
       }
-      this.swaggerhub = this.swaggerhub.bind(this)
-      this.getOrganizationData = this.getOrganizationData.bind(this)
+      this.loadSwaggerUrls = this.loadSwaggerUrls.bind(this)
       this.updateDefinitionLink = this.updateDefinitionLink.bind(this)
     }
 
   componentWillMount() {
     this.setState({
       organizationConfig:  Config.orgData,
+      swaggerUrlList: Config.swaggerUrls
     })
   }
 
-  swaggerhub(inputMethod, inputResource, inputParams) {
-    let url = ""
-    if (inputParams) {
-      url = "https://api.swaggerhub.com/apis/" + inputResource + "?" + inputParams
-    } else {
-      url = "https://api.swaggerhub.com/apis/" + inputResource
-    }
-    
-    return fetch(url, {
-        method: inputMethod
-    }).then(response => {
-      if (response.ok) {
-        return response.json()
-      } throw new Error('There was an issue requesting the API')
-    }).then(json => {
-      return json
-    })
-  }
-
-  getOrganizationData(organization) {
-    let inputParams = "page=0&limit=10&sort=NAME&order=ASC"
-    let inputResource = organization;
-  
-    this.swaggerhub('GET', inputResource, inputParams).then(response => {
-      this.setState({
-        definitionList: response.apis
-      })
-    })
+  loadSwaggerUrls() {
+    // URLs are already loaded from config in componentWillMount
+    // This method is kept for compatibility with Sidebar component
+    return this.state.swaggerUrlList;
   }
 
   updateDefinitionLink(newLink) {
@@ -63,9 +39,9 @@ class App extends Component {
       <div className="App">
         <Sidebar 
           organizationConfig={this.state.organizationConfig}
-          definitionList={this.state.definitionList}
+          swaggerUrlList={this.state.swaggerUrlList}
           updateDefinitionLink={this.updateDefinitionLink}
-          getOrganizationData={this.getOrganizationData}
+          loadSwaggerUrls={this.loadSwaggerUrls}
         />
         
         <div id="api-data">

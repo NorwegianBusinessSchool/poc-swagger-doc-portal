@@ -5,19 +5,15 @@ const Sidebar = props => {
     let organizationConfig = props.organizationConfig
     let apiLinks = []
 
-    if (props.definitionList === null) {
-        props.getOrganizationData(organizationConfig.orgName)
-    } else {
-        for (let i = 0; i < props.definitionList.length; i++) {
-            if (props.definitionList[i].properties[4].value === "true") {
-                apiLinks.push(
-                    <APILink 
-                        key={i}
-                        apiLinkData={props.definitionList[i]}
-                        updateDefinitionLink={props.updateDefinitionLink}
-                    />
-                )
-            }
+    if (props.swaggerUrlList && props.swaggerUrlList.length > 0) {
+        for (let i = 0; i < props.swaggerUrlList.length; i++) {
+            apiLinks.push(
+                <APILink 
+                    key={i}
+                    apiLinkData={props.swaggerUrlList[i]}
+                    updateDefinitionLink={props.updateDefinitionLink}
+                />
+            )
         }
     }
 
