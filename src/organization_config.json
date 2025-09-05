@@ -1,8 +1,24 @@
 {
     "orgData": {
-        "orgName": "The_Empire",
         "displayName": "The Galactic Empire",
         "displayTag": "Home of the Galaxies Greatest APIs",
         "displayImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Emblem_of_the_First_Galactic_Empire.svg/220px-Emblem_of_the_First_Galactic_Empire.svg.png"
-    }
+    },
+    "swaggerUrls": [
+        {
+            "name": "Petstore API",
+            "description": "Sample Pet Store API",
+            "url": "https://petstore.swagger.io/v2/swagger.json"
+        },
+        {
+            "name": "JSONPlaceholder API",
+            "description": "Fake Online REST API",
+            "url": "https://petstore3.swagger.io/api/v3/openapi.json"
+        },
+        {
+            "name": "OpenAPI Generator",
+            "description": "OpenAPI Generator Online",
+            "url": "https://generator3.swagger.io/openapi.json"
+        }
+    ]
 }
